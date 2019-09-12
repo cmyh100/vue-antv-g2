@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div id="c1"></div>
+    <div :id="id"></div>
   </div>
 </template>
 <script>
 import G2 from '@antv/g2';
-import { setTimeout } from 'timers';
 export default {
-  name: 'VLine',
+  name: 'vline',
   props: {
     id: {
       type: String,
-      default: 'c1'
+      default: 'vline'
     }
   },
   created () {
@@ -19,25 +18,57 @@ export default {
   },
   methods: {
     init () {
-      if (document.querySelector('#c1')) {
-        const data = [
-          { genre: 'Sports', sold: 275 },
-          { genre: 'Strategy', sold: 115 },
-          { genre: 'Action', sold: 120 },
-          { genre: 'Shooter', sold: 350 },
-          { genre: 'Other', sold: 150 }
-        ]; // G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
-        // Step 1: 创建 Chart 对象
-        const chart = new G2.Chart({
-          container: 'c1', // 指定图表容器 ID
-          width : 600, // 指定图表宽度
-          height : 300 // 指定图表高度
+      if (document.querySelector(`#${this.id}`)) {
+        var data = [{
+          year: '1991',
+          value: 3
+        }, {
+          year: '1992',
+          value: 4
+        }, {
+          year: '1993',
+          value: 3.5
+        }, {
+          year: '1994',
+          value: 5
+        }, {
+          year: '1995',
+          value: 4.9
+        }, {
+          year: '1996',
+          value: 6
+        }, {
+          year: '1997',
+          value: 7
+        }, {
+          year: '1998',
+          value: 9
+        }, {
+          year: '1999',
+          value: 13
+        }];
+        var chart = new G2.Chart({
+          container: this.id,
+          forceFit: true,
+          height: 500
         });
-        // Step 2: 载入数据源
         chart.source(data);
-        // Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
-        chart.interval().position('genre*sold').color('genre')
-        // Step 4: 渲染图表
+        chart.scale('value', {
+          min: 0
+        });
+        chart.scale('year', {
+          range: [0, 1]
+        });
+        chart.tooltip({
+          crosshairs: {
+            type: 'line'
+          }
+        });
+        chart.line().position('year*value');
+        chart.point().position('year*value').size(4).shape('circle').style({
+          stroke: '#fff',
+          lineWidth: 1
+        });
         chart.render();
       } else {
         setTimeout(() => {

@@ -8,9 +8,12 @@
     </p> -->
     <h3>组件</h3>
     <ul>
-      <li><vLine :id="'c1'"/></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+      <li>
+        <p>
+          折线图
+        </p>
+        <vLine :id="'c1'"/>
+      </li>
     </ul>
     <!-- <h3>Essential Links</h3>
     <ul>
