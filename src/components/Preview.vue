@@ -12,7 +12,7 @@
         <p>
           折线图
         </p>
-        <vLine :id="'c1'"/>
+        <vline :id="'c1'"/>
       </li>
     </ul>
     <!-- <h3>Essential Links</h3>
@@ -35,14 +35,14 @@
 </template>
 
 <script>
-import vLine from '@/components/vline'
+import vline from '@/components/vline'
 export default {
   name: 'prreview',
   props: {
     msg: String
   },
   components: {
-    vLine
+    vline
   }
 }
 </script>
